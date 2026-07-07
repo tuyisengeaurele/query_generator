@@ -1,0 +1,24 @@
+:root {
+  --color-ink: #0c0e10;
+  --color-surface: #15181b;
+  --color-raised: #1d2125;
+  --color-hairline: #2a2f34;
+  --color-text: #ecebe7;
+  --color-muted: #8a9199;
+  --color-signal-warm: #e8a13c;
+  --color-signal-cool: #57c7b4;
+  --color-ok: #5fb878;
+  --color-err: #e0575b;
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "Geist Sans", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", monospace;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+}
