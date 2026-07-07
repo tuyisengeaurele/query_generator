@@ -1,5 +1,11 @@
 # Evaluation harness
 
+Status: the harness runs end to end against the real BIRD dev set (confirmed
+with a 40-question slice), but no ablation report has been generated yet
+because the configured Anthropic key has no credit balance. Run
+`ablation.py` again once the key has credits; it will overwrite
+`results/ablation.md` with real numbers.
+
 Scores the pipeline against a subset of the BIRD dev set using execution
 accuracy: run the predicted SQL and the gold SQL against the same SQLite
 database, compare the result sets.
