@@ -34,13 +34,22 @@ def download_dev_set() -> None:
 
 
 def extract_dev_set() -> None:
-    if RAW_DIR.exists() and any(RAW_DIR.iterdir()):
-        print(f"found existing extracted data at {RAW_DIR}, skipping extraction")
-        return
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    print(f"extracting {ZIP_PATH} to {RAW_DIR}")
-    with zipfile.ZipFile(ZIP_PATH) as archive:
-        archive.extractall(RAW_DIR)
+    if not (RAW_DIR.exists() and any(RAW_DIR.iterdir())):
+        RAW_DIR.mkdir(parents=True, exist_ok=True)
+        print(f"extracting {ZIP_PATH} to {RAW_DIR}")
+        with zipfile.ZipFile(ZIP_PATH) as archive:
+            archive.extractall(RAW_DIR)
+
+    # The top-level archive contains a nested dev_databases.zip holding the
+    # actual sqlite files; it is not extracted by the outer extractall call.
+    nested_zips = list(RAW_DIR.rglob("dev_databases.zip"))
+    for nested_zip in nested_zips:
+        marker = nested_zip.parent / "dev_databases"
+        if marker.exists() and any(marker.iterdir()):
+            continue
+        print(f"extracting {nested_zip}")
+        with zipfile.ZipFile(nested_zip) as archive:
+            archive.extractall(nested_zip.parent)
 
 
 def _find_dev_json() -> Path:
