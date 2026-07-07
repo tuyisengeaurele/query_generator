@@ -1,0 +1,36 @@
+# Node
+node_modules/
+dist/
+build/
+.vite/
+*.local
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Env
+.env
+.env.*.local
+!.env.example
+
+# Eval data (downloaded, not versioned)
+eval/data/
+eval/results/*.json
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
