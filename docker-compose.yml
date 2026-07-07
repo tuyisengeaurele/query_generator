@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: query_generator
+      POSTGRES_PASSWORD: query_generator
+      POSTGRES_DB: query_generator
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./data/demo_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./data/demo_seed.sql:/docker-entrypoint-initdb.d/02_seed.sql
+      - ./data/demo_readonly_role.sql:/docker-entrypoint-initdb.d/03_readonly_role.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U query_generator"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./apps/api
+    environment:
+      DATABASE_URL: postgresql+psycopg://query_generator:query_generator@postgres:5432/query_generator
+      MODEL_PROVIDER: anthropic
+    env_file:
+      - ./apps/api/.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:
