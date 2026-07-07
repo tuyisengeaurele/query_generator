@@ -1,0 +1,15 @@
+{
+  "name": "@query-generator/ui",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "peerDependencies": {
+    "react": "^18.0.0"
+  },
+  "dependencies": {
+    "@query-generator/design-tokens": "workspace:*",
+    "clsx": "^2.1.1"
+  }
+}
