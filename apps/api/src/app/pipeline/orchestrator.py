@@ -48,6 +48,7 @@ def answer_question(
     engine: Engine,
     provider: ModelProvider,
     settings: Settings,
+    max_retries_override: int | None = None,
 ) -> QueryResult:
     started_at = time.perf_counter()
 
@@ -72,7 +73,7 @@ def answer_question(
         dialect=dialect,
         default_limit=settings.default_row_limit,
         timeout_seconds=settings.statement_timeout_seconds,
-        max_retries=settings.max_correction_attempts,
+        max_retries=max_retries_override if max_retries_override is not None else settings.max_correction_attempts,
     )
 
     latency_ms = int((time.perf_counter() - started_at) * 1000)
