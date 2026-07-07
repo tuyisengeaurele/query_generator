@@ -1,0 +1,14 @@
+@import "../../../packages/design-tokens/css/tokens.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+}
