@@ -1,0 +1,9 @@
+{
+  "name": "@query-generator/design-tokens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "files": ["src", "css"]
+}
