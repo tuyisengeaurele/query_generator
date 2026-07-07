@@ -24,6 +24,9 @@ htmlcov/
 eval/data/
 eval/results/*.json
 
+# Locally built demo database
+data/demo.db
+
 # Editors and OS
 .vscode/
 .idea/
